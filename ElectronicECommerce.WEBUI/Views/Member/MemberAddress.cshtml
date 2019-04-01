@@ -1,0 +1,104 @@
+﻿@using ElectronicECommerce.WEBUI.ViewModels;
+@using ElectronicECommerce.BOL.Entities;
+@model AddresVM
+<!--================Categories Banner Area =================-->
+<section class="solid_banner_area">
+    <div class="container">
+        <div class="solid_banner_inner">
+            <h3>Üyelik Bilgilerim</h3>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a>Hesabım</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!--================End Categories Banner Area =================-->
+<select class="sehirler" id="sehirler" onchange="ilceGetir()" name="CityID">
+    <option selected>Şehir Seçin..</option>
+    @foreach (City item in Model.cities)
+    {
+        <option value="@item.ID">@item.Name</option>
+    }
+</select>
+<select class="ilceler" id="ilceler" name="DistrictID"></select>
+<!--================Register Area =================-->
+<section class="register_area p_100">
+    <div class="container">
+        <div class="register_inner">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="billing_details">
+                        <h2 class="reg_title">Adres Bilgileri</h2>
+                        <form class="billing_inner row" action="/Member/MemberAddress" method="post">
+                            @Html.AntiForgeryToken()
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="cun">İl <span>*</span></label>
+                                    <select class="form-control sehirler" id="sehirler" onchange="ilceGetir(this)" name="CityID">
+                                        <option selected>Şehir Seçin..</option>
+                                        @foreach (City item in Model.cities)
+                                        {
+                                            <option value="@item.ID">@item.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="cun">İlçe <span>*</span></label>
+                                    <select class="form-control ilceler" id="ilceler" name="DistrictID"></select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="name">Adres Adı<span>*</span></label>
+                                    <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="" name="Name">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="last">Adres <span>*</span>(Mahalle/Sokak)</label>
+                                    <input type="text" class="form-control" id="last" aria-describedby="last" name="MemberAddress">
+                                </div>
+                            </div>
+                            <button type="submit" value="submit" class="btn subs_btn form-control">Kaydet</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="order_box_price">
+                        <h2 class="reg_title">Kayıtlı Adreslerim</h2>
+                        <div class="payment_list">
+
+                            <div id="accordion" role="tablist" class="price_method">
+                                @foreach (Address item in Model.addresses)
+                                {
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="headingOne">
+                                            <h5 class="mb-0">
+                                                <a @*data-toggle="collapse"*@ href="@Url.Action("AddressUpdate","Member",new { ID=item.ID})" @*role="button" aria-expanded="true" aria-controls="collapseOne"*@>
+                                                    @item.Name
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                                            <div class="card-body">
+                                                @item.MemberAddress
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Register Area =================-->

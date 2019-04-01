@@ -1,0 +1,83 @@
+﻿<!--================Categories Banner Area =================-->
+<section class="solid_banner_area">
+    <div class="container">
+        <div class="solid_banner_inner">
+            <h3>Giriş Yapın veya Hesap Oluşturun</h3>
+            <ul>
+                <li><a href="/">Anasayfa</a></li>
+                <li><a href="#">Giriş Yap</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!--================End Categories Banner Area =================-->
+<!--================login Area =================-->
+<section class="login_area p_100">
+    <div class="container">
+        <div class="login_inner">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="login_title">
+                        <h2>Hesabınıza Giriş Yapın</h2>
+                        <p>Keşfetmek ve harika fırsatlardan yaralanmak için giriş yapın.</p>
+                    </div>
+                    <form class="login_form row" action="/Member/Login" method="post">
+                        @Html.AntiForgeryToken()
+                        <div class="col-lg-12 form-group">
+                            <input class="form-control" type="text" placeholder="Mail Adresiniz.." name="MailAddress">
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            <input class="form-control" type="password" placeholder="Parolanız.." name="Password">
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            <div class="creat_account">
+                                <input type="checkbox" id="f-option" name="selector">
+                                <label for="f-option">Beni Hatırla</label>
+                                <div class="check"></div>
+                            </div>
+                            <h4>Parolanızı mı Unuttunuz ?</h4>
+                        </div>
+                        <div class="col-lg-12 form-group" style="position:relative; top:18px;">
+                            <button type="submit" value="submit" class="btn update_btn form-control">Giriş Yap</button>
+                            <span style="color:red; font-weight:bold;display:block;">@TempData["Hata"]</span>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-8">
+                    <div class="login_title">
+                        <h2>Hesap Oluşturun</h2>
+                        <p>
+                            Hesabı oluşturmak için aşağıdaki adımları takip edin <br />ve mükemmel fırsatların keyfini çıkarın.
+                        </p>
+                    </div>
+                    <form class="login_form row" action="/Member/CreateAccount" method="post">
+                        @Html.AntiForgeryToken()
+                        <div class="col-lg-6 form-group">
+                            <input class="form-control" type="text" placeholder="Adınız.." name="Name">
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <input class="form-control" type="text" placeholder="Soyadınız.." name="SurName">
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <input class="form-control" type="email" placeholder="Mail Adresiniz.." name="MailAddress">
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <input class="form-control" type="text" placeholder="Telefon Numaranız.." name="PhoneNumber">
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <input class="form-control" type="password" placeholder="Parolanız.." name="Password">
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <input class="form-control" type="password" placeholder="Parolanız Tekrar.." name="Password2">
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <button type="submit" value="submit" class="btn subs_btn form-control">Şimdi Kayıt Olun</button>
+                            <span style="color:red; font-weight:bold;display:block;">@TempData["error1"]</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End login Area =================-->

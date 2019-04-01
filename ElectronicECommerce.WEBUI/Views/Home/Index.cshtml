@@ -1,0 +1,156 @@
+﻿@using ElectronicECommerce.WebUI.ViewModels;
+@using ElectronicECommerce.BOL.Entities;
+@model IndexVM
+
+<!--================Home Carousel Area =================-->
+<section class="home_carousel_area">
+    <div class="home_carousel_slider owl-carousel">
+
+        @foreach (Picture item in Model.pictures)
+        {
+            <div class="item">
+                <div class="h_carousel_item">
+                    <img src="@item.PSliderPath" alt="">
+                    <div class="carousel_hover">
+                        <h3>@item.Product.Name</h3>
+                        <h4>We feature the best professional bags </h4>
+                        <h5>Including:</h5>
+                        <p>Adidas, Century, Everlast, Fairtex, Fighting Sports, WaveMaster, Twins, Rival</p>
+                        <a class="discover_btn" href="@Url.Action("Details","Product",new { ID = item.Product.ID})">Şimdi Keşfet</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+<!--================End Home Carousel Area =================-->
+
+<!--================Special Offer Area =================-->
+<section class="special_offer_area">
+    <div class="container">
+        <div class="row">
+            @foreach (Advertisement item in Model.advertisements)
+            {
+                <div class="col-lg-6">
+                    <div class="special_offer_item">
+                        <img class="img-fluid" src="@item.FPath" alt="@item.Name">
+                        <div class="hover_text">
+                            <h4>Özel Teklif</h4>
+                            <h5>Genç Çift</h5>
+                            <a class="shop_now_btn" href="@item.Link" target="_blank">Şimdi Al</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!--================End Special Offer Area =================-->
+
+<!--================Our Latest Product Area =================-->
+<section class="our_latest_product">
+    <div class="container">
+        <div class="s_m_title">
+            <h2>Son Eklenen Ürünler</h2>
+        </div>
+        <div class="l_product_slider owl-carousel">
+            @foreach (Product item in Model.NewestProducts)
+            {
+                <div class="item">
+                    <div class="l_product_item">
+                        <div class="l_p_img">
+                            <img src="@item.Pictures.FirstOrDefault(f=>f.PIndex==1).PLastSliderPath" alt="@item.Name">
+                        </div>
+                        <div class="l_p_text">
+                            <ul>
+                                <li class="p_icon"><a href="@Url.Action("Details","Product",new { ID = item.ID})"><i class="icon_piechart"></i></a></li>
+                                <li><a class="add_cart_btn" onclick="functAddCart(@item.ID,1)" href="">Sepete Ekle</a></li>
+                                <li class="p_icon"><a style="cursor:pointer;">
+                                        <input type="hidden" value="@item.ID" class="productID"/>
+                                        <i class="icon_heart" onclick="funcAddFavorite(this)"></i>
+                                    </a></li>
+                            </ul>
+                            <h4>@item.Name</h4>
+                            <h5>@item.Price TL</h5>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="s_m_title">
+            <h2>En Çok Satılan Ürünler</h2>
+        </div>
+        <div class="l_product_slider owl-carousel">
+            @foreach (Product item in Model.BestSellerProducts)
+            {
+                <div class="item">
+                    <div class="l_product_item">
+                        <div class="l_p_img">
+                            <img src="@item.Pictures.FirstOrDefault(f=>f.PIndex==1).PLastSliderPath" alt="@item.Name">
+                        </div>
+                        <div class="l_p_text">
+                            <ul>
+                                <li class="p_icon"><a href="@Url.Action("Details","Product",new { ID = item.ID})"><i class="icon_piechart"></i></a></li>
+                                <li><a class="add_cart_btn" onclick="functAddCart(@item.ID,1)" href="#">Sepete Ekle</a></li>
+                                <li class="p_icon"><a href="#"><i class="icon_heart"></i></a></li>
+                            </ul>
+                            <h4>@item.Name</h4>
+                            <h5>@item.Price TL</h5>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+<!--================End Our Latest Product Area =================-->
+
+
+
+<!--================Form Blog Area =================-->
+<section class="from_blog_area">
+    <div class="container">
+        <div class="from_blog_inner">
+            <div class="c_main_title">
+                <h2>Blogdan</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="from_blog_item">
+                        <img class="img-fluid" src="/Content/img/blog/from-blog/f-blog-1.jpg" alt="">
+                        <div class="f_blog_text">
+                            <h5>fashion</h5>
+                            <p>Neque porro quisquam est qui dolorem ipsum</p>
+                            <h6>21.09.2017</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="from_blog_item">
+                        <img class="img-fluid" src="/Content/img/blog/from-blog/f-blog-2.jpg" alt="">
+                        <div class="f_blog_text">
+                            <h5>fashion</h5>
+                            <p>Neque porro quisquam est qui dolorem ipsum</p>
+                            <h6>21.09.2017</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="from_blog_item">
+                        <img class="img-fluid" src="/Content/img/blog/from-blog/f-blog-3.jpg" alt="">
+                        <div class="f_blog_text">
+                            <h5>fashion</h5>
+                            <p>Neque porro quisquam est qui dolorem ipsum</p>
+                            <h6>21.09.2017</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Form Blog Area =================-->

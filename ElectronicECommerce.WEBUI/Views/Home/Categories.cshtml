@@ -1,0 +1,7 @@
+﻿@using ElectronicECommerce.BOL.Entities
+@model IEnumerable<Category>
+
+@foreach (Category item in Model.Where(w=>w.ParentID==null))
+{
+    <li class="nav-item"><a class="nav-link" href="@Url.Action("Categories","Product",new { ID = item.ID})">@item.Name</a></li>
+}

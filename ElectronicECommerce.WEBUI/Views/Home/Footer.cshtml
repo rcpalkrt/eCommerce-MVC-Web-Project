@@ -1,0 +1,43 @@
+﻿@using ElectronicECommerce.WEBUI.ViewModels;
+@using ElectronicECommerce.BOL.Entities;
+@model FooterVM
+
+<div class="col-lg-2 col-md-4 col-6">
+    <aside class="f_widget link_widget f_service_widget">
+        <div class="f_w_title">
+            <h3>Sıkça Sorulan Sorular</h3>
+        </div>
+        <ul>
+            @foreach (QuestionCategory item in Model.questionCategories)
+            {
+                <li><a href="@Url.Action("SSS","Home")">@item.Name</a></li>
+            }
+        </ul>
+    </aside>
+</div>
+<div class="col-lg-2 col-md-4 col-6">
+    <aside class="f_widget link_widget f_extra_widget">
+        <div class="f_w_title">
+            <h3>Hızlı Erişim Marka</h3>
+        </div>
+        <ul>
+            @foreach (Brand item in Model.brands)
+            {
+                <li><a href="@Url.Action("Filter","Product",new { brID=item.ID})">@item.Name</a></li>
+            }
+        </ul>
+    </aside>
+</div>
+<div class="col-lg-2 col-md-4 col-6">
+    <aside class="f_widget link_widget f_account_widget">
+        <div class="f_w_title">
+            <h3> Hızlı Erişim Kategori</h3>
+        </div>
+        <ul>
+            @foreach (Category item in Model.categories)
+            {
+                <li><a href="@Url.Action("Filter","Product",new { catID=item.ID})">@item.Name</a></li>
+            }
+        </ul>
+    </aside>
+</div>

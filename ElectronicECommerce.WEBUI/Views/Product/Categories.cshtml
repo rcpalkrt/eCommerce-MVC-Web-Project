@@ -1,0 +1,155 @@
+﻿@using ElectronicECommerce.BOL.Entities
+@using ElectronicECommerce.WEBUI.ViewModels
+@model ProductVM
+<!--================Categories Banner Area =================-->
+<section class="categories_banner_area">
+    <div class="container">
+        <div class="c_banner_inner">
+            <h3></h3>
+            <ul>
+                <li><a href="/">Anasayfa</a></li>
+                <li><a>Kategoriler</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!--================End Categories Banner Area =================-->
+<!--================Categories Product Area =================-->
+<section class="categories_product_main p_80">
+    <div class="container">
+        <div class="categories_main_inner">
+            <div class="row row_disable">
+                <div class="col-lg-9 float-md-right">
+                    <div class="showing_fillter">
+                        <div class="row m0">
+                            <div class="first_fillter">
+                                <h4>Showing 1 to 12 of 30 total</h4>
+                            </div>
+                            <div class="secand_fillter">
+                                <h4>SORT BY :</h4>
+                                <select class="selectpicker">
+                                    <option>Name</option>
+                                    <option>Name 2</option>
+                                    <option>Name 3</option>
+                                </select>
+                            </div>
+                            <div class="third_fillter">
+                                <h4>Show : </h4>
+                                <select class="selectpicker">
+                                    <option>09</option>
+                                    <option>10</option>
+                                    <option>10</option>
+                                </select>
+                            </div>
+                            <div class="four_fillter">
+                                <h4>View</h4>
+                                <a class="active" href="#"><i class="icon_grid-2x2"></i></a>
+                                <a href="#"><i class="icon_grid-3x3"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="categories_product_area">
+                        <div class="row">
+                            @foreach (Product item in Model.products)
+                            {
+                                <div class="col-lg-4 col-sm-6">
+                                    <div class="l_product_item">
+                                        <div class="l_p_img">
+                                            <img src="@item.Pictures.FirstOrDefault(f=>f.PIndex==1).PSliderPath" alt="@item.Name">
+                                            @if (item.IsNew) {<h5 class="new">New</h5> }
+                                        </div>
+                                        <div class="l_p_text">
+                                            <ul>
+                                                <li class="p_icon"><a href="@Url.Action("Details","Product",new { ID=item.ID})"><i class="icon_piechart"></i></a></li>
+                                                <li><a class="add_cart_btn" href="#">Sepete Ekle</a></li>
+                                                <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
+                                            </ul>
+                                            <h4>@item.Name</h4>
+                                            <h5>@item.Price TL</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <nav aria-label="Page navigation example" class="pagination_area">
+                            <ul class="pagination">
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                <li class="page-item next"><a class="page-link" href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-lg-3 float-md-right">
+                    <div class="categories_sidebar">
+                        <aside class="l_widgest l_p_categories_widget">
+                            <div class="l_w_title">
+                                <h3>Kategoriler</h3>
+                            </div>
+                            <ul class="navbar-nav">
+                                @foreach (Category item in Model.categories.Where(w=>w.ParentID==null))
+                                {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="@Url.Action("Filter","Product",new { catID=item.ID})" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        @item.Name
+                                        <i class="icon_plus" aria-hidden="true"></i>
+                                        <i class="icon_minus-06" aria-hidden="true"></i>
+                                    </a>
+                                    @if (item.Children.Any())
+                                    {
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        @foreach (Category subCate in item.Children)
+                                        {
+                                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Filter","Product",new { catID=subCate.ID})" >@subCate.Name</a></li>
+                                        }
+                                    </ul>
+                                    }
+                                </li>
+                                }
+                            </ul>
+                        </aside>
+                        <aside class="l_widgest l_menufacture_widget">
+                            <div class="l_w_title">
+                                <h3>Markalar</h3>
+                            </div>
+                            <ul>
+                                @foreach (Brand item in Model.brands)
+                                {
+                                    <li><a href="@Url.Action("Filter","Product",new { brID=item.ID})">@item.Name</a></li>
+                                }
+                            </ul>
+                        </aside>
+                        @*<aside class="l_widgest l_feature_widget">
+                            <div class="l_w_title">
+                                <h3>Gelecekteki Urunler</h3>
+                            </div>
+                            <div class="media">
+                                <div class="d-flex">
+                                    <img src="/Content/img/product/featured-product/f-p-5.jpg" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <h4>Jeans with <br /> Frayed Hems</h4>
+                                    <h5>$45.05</h5>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="d-flex">
+                                    <img src="/Content/img/product/featured-product/f-p-6.jpg" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <h4>Crysp Denim<br />Montana</h4>
+                                    <h5>$45.05</h5>
+                                </div>
+                            </div>
+                        </aside>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Categories Product Area =================-->

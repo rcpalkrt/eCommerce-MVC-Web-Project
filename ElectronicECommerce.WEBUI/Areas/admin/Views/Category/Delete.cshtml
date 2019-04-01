@@ -1,0 +1,49 @@
+﻿@model ElectronicECommerce.BOL.Entities.Category
+
+@{
+    ViewBag.sayfaBaslik = "Kategori Yönetimi";
+    ViewBag.tabloBaslik = "Kategori Sil";
+}
+
+
+<h3>Bunu Silmek İstediğinize Emin misiniz?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsNew)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsNew)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PIndex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PIndex)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-danger" /> |
+            @Html.ActionLink("Geri Dön", "Index", null, new { @class = "btn btn-dark" })
+        </div>
+    }
+</div>

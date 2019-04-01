@@ -1,0 +1,102 @@
+﻿@using ElectronicECommerce.WebUI.OtherModels
+@model ManyClass
+
+@{
+    ViewBag.sayfaBaslik = "Ürün Yönetimi";
+ViewBag.tabloBaslik = "Ürün Ekle";
+}
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Product.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Product.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.Detail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Product.Detail, new { @class = "form-control", @id = "editor" })
+                @Html.ValidationMessageFor(model => model.Product.Detail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Product.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Product.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.PIndex, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Product.PIndex, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Product.PIndex, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Marka</label>
+            <div class="col-md-4">
+                @Html.DropDownList("Product.BrandID", new SelectList(Model.Brands, "ID", "Name"), "Marka Seçiniz", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Kategori</label>
+            <div class="col-md-4">
+                @Html.DropDownList("Product.CategoryID", new SelectList(Model.Categories, "ID", "Name"), "Kategori Seçiniz", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.Stock, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Product.Stock, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Product.Stock, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.IsNew, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Product.IsNew)
+                @Html.ValidationMessageFor(model => model.Product.IsNew, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.IsDiscount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Product.IsDiscount)
+                @Html.ValidationMessageFor(model => model.Product.IsDiscount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @for (int i = 1; i <= 6; i++)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">Resim @i</label>
+                <div class="col-md-10">
+                    <input type="file" name="Picture" style="margin-top:5px;" />
+                    @if (i == 1)
+                    {
+                        <label style="color:#900707;"> Bu Resim Anasayfada Gösterilecektir..!</label>
+                    }
+                </div>
+            </div>
+        }
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="EKLE" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Geri Dön", "Index", null, new { @class = "btn btn-dark" })
+</div>

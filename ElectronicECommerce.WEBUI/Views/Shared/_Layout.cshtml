@@ -1,0 +1,174 @@
+﻿@using ElectronicECommerce.WEBUI.Helper;
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="/Content/img/fav-icon.png" type="image/x-icon" />
+    <title>TeknoRA</title>
+    <link href="/Content/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/Content/vendors/line-icon/css/simple-line-icons.css" rel="stylesheet">
+    <link href="/Content/vendors/elegant-icon/style.css" rel="stylesheet">
+    <link href="/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Content/vendors/revolution/css/settings.css" rel="stylesheet">
+    <link href="/Content/vendors/revolution/css/layers.css" rel="stylesheet">
+    <link href="/Content/vendors/revolution/css/navigation.css" rel="stylesheet">
+    <link href="/Content/vendors/owl-carousel/owl.carousel.min.css" rel="stylesheet">
+    <link href="/Content/vendors/bootstrap-selector/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="/Content/vendors/jquery-ui/jquery-ui.css" rel="stylesheet">
+    <link href="/Content/css/style.css" rel="stylesheet">
+    <link href="/Content/css/responsive.css" rel="stylesheet">
+    <link href="~/Content/css/faq.css" rel="stylesheet" />
+    <link href="/Content/css/main.css" rel="stylesheet" />
+
+</head>
+<body>
+    <header class="shop_header_area carousel_menu_area">
+        @if (Session["AdSoyad"] != null)
+        {
+            <div class="carousel_top_header black_top_header row m0">
+                <div class="container">
+                    <div class="carousel_top_h_inner">
+                        <div class="float-md-right">
+                            <ul class="account_list">
+                                <li><span style="color:white">Merhaba @Session["AdSoyad"]</span></li>
+                                <li><a href="@Url.Action("MemberAddress","Member")">Hesabım</a></li>
+                                <li><a href="@Url.Action("Index","Cart")">Sepetim</a></li>
+                                <li><a href="@Url.Action("Logout","Member")">Çıkış</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="carousel_top_header row m0">
+            <div class="container">
+                <div class="carousel_top_h_inner">
+                    <div class="float-md-right">
+                        <div class="top_header_middle">
+                            <a href="#"><i class="fa fa-phone"></i> Bizi Arayın: <span>+90 987 654 321</span></a>
+                            <a href="#"><i class="fa fa-envelope"></i> Mail Gönderin: <span>info@teknora.com</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel_menu_inner">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="/"><img src="/Content/img/teknora.png" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item dropdown submenu">
+                                <a class="nav-link dropdown-toggle" href="/" role="button" aria-haspopup="true" aria-expanded="false">
+                                    Anasayfa
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown submenu">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Kategoriler <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    @{Html.RenderAction("Categories", "Home");}
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Blog","Home")">Blog</a></li>
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("SSS","Home")">S.S. Sorular</a></li>
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact","Home")">İletişim</a></li>
+                        </ul>
+                        <ul class="navbar-nav justify-content-end">
+                            <li class="search_icon"><a href="#"><i class="icon-magnifier icons"></i></a></li>
+                            <li class="user_icon"><a href="@Url.Action("Index","Member")"><i class="icon-user icons"></i></a></li>
+                            <li class="cart_cart"><a href="@Url.Action("Index","Cart")"><i class="icon-handbag icons"></i><span class="toplam">@CartHelper.CartCount()</span></a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <span class="spanMenuIndex" style="display:none">@ViewBag.MenuIndex</span>
+    <!--================End Menu Area =================-->
+
+
+    @RenderBody()
+
+
+    <!--================Footer Area =================-->
+    <footer class="footer_area">
+        <div class="container">
+            <div class="footer_widgets">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-6">
+                        <aside class="f_widget f_about_widget">
+                            <img src="~/Content/img/teknora.png" alt="">
+                            <p>Keşfet Takıl Eğlenmene Bak </p>
+                            <h6>Sosyal Medya:</h6>
+                            <ul>
+                                <li><a href="#"><i class="social_facebook"></i></a></li>
+                                <li><a href="#"><i class="social_twitter"></i></a></li>
+                                <li><a href="#"><i class="social_pinterest"></i></a></li>
+                                <li><a href="#"><i class="social_instagram"></i></a></li>
+                                <li><a href="#"><i class="social_youtube"></i></a></li>
+                            </ul>
+                        </aside>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6">
+                        <aside class="f_widget link_widget f_info_widget">
+                            <div class="f_w_title">
+                                <h3>Kısaca Hakkımızda</h3>
+                            </div>
+                            <p>Daima bir adım daha ilerisine gitmek için heyecanla çalışıyruz.</p>
+                        </aside>
+                    </div>
+                    @{Html.RenderAction("Footer", "Home");}
+
+                </div>
+            </div>
+            <div class="footer_copyright">
+                <h5>
+                    ©
+                    <script>document.write(new Date().getFullYear());</script> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Recep Alkurt</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </h5>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/Content/js/jquery-3.2.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/Content/js/popper.min.js"></script>
+    <script src="/Content/js/bootstrap.min.js"></script>
+    <!-- Rev slider js -->
+    <script src="/Content/vendors/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script src="/Content/vendors/revolution/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="/Content/vendors/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+    <script src="/Content/vendors/revolution/js/extensions/revolution.extension.video.min.js"></script>
+    <script src="/Content/vendors/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script src="/Content/vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script src="/Content/vendors/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script src="/Content/vendors/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <!-- Extra plugin css -->
+    <script src="/Content/vendors/counterup/jquery.waypoints.min.js"></script>
+    <script src="/Content/vendors/counterup/jquery.counterup.min.js"></script>
+    <script src="/Content/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/Content/vendors/bootstrap-selector/js/bootstrap-select.min.js"></script>
+    <script src="/Content/vendors/image-dropdown/jquery.dd.min.js"></script>
+    <script src="/Content/js/smoothscroll.js"></script>
+    <script src="/Content/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="/Content/vendors/isotope/isotope.pkgd.min.js"></script>
+    <script src="/Content/vendors/magnify-popup/jquery.magnific-popup.min.js"></script>
+    <script src="/Content/vendors/vertical-slider/js/jQuery.verticalCarousel.js"></script>
+    <script src="/Content/vendors/jquery-ui/jquery-ui.js"></script>
+    <script src="~/Content/js/main.js"></script>
+    <script src="/Content/js/theme.js"></script>
+</body>
+</html>

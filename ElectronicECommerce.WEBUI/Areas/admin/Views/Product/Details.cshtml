@@ -1,0 +1,49 @@
+﻿@model ElectronicECommerce.BOL.Entities.Product
+
+@{
+    ViewBag.sayfaBaslik = "Ürün Yönetimi";
+    ViewBag.tabloBaslik = "Ürün Detayı";
+}
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Detail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PIndex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PIndex)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Geri Dön", "Index", null, new { @class = "btn btn-dark" })
+</p>

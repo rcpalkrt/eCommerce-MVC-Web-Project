@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ElectronicECommerce.BOL.Entities.Brand>
+
+@{
+    ViewBag.sayfaBaslik = "Marka Yönetimi";
+    ViewBag.tabloBaslik = "Markalar";
+}
+<p>
+    @Html.ActionLink("Yeni Kayıt", "Create",null,new { @class= "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td style="width:250px">
+            @Html.ActionLink("Düzenle", "Edit", new { id = item.ID }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Detaylar", "Details", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Sil", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

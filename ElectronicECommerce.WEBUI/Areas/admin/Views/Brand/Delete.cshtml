@@ -1,0 +1,33 @@
+﻿@model ElectronicECommerce.BOL.Entities.Brand
+
+@{
+    ViewBag.sayfaBaslik = "Marka Yönetimi";
+    ViewBag.tabloBaslik = "Marka Sil";
+}
+
+
+<h3>Bunu Silmek İstediğinize Emin misiniz?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+       
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-danger" /> |
+            @Html.ActionLink("Geri Dön", "Index", null, new { @class = "btn btn-dark" })
+        </div>
+    }
+</div>

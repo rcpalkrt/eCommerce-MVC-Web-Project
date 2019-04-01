@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ElectronicECommerce.BOL.Entities.Product>
+
+@{
+    ViewBag.sayfaBaslik = "Ürün Yönetimi";
+    ViewBag.tabloBaslik = "Ürünler";
+}
+<p>
+    @Html.ActionLink("Yeni Kayıt", "Create",null,new { @class= "btn btn-success" })
+</p>
+<table class="table">
+    <tr style="background-color:#424242; color:#fff">
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Detail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PIndex)
+        </th>
+        <th>
+            İşlemeler
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td style="width:200px">
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td style="width:240px">
+            @Html.Raw(item.Detail)
+        </td>
+        <td style="width:100px">
+            @Html.DisplayFor(modelItem => item.Price) TL
+        </td>
+        <td style="width:150px">
+            @Html.DisplayFor(modelItem => item.PIndex) 
+        </td>
+        <td style="width:250px">
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.ID }, new { @class="btn btn-warning"}) |
+            @Html.ActionLink("Detaylar", "Details", new { id=item.ID }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.ID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

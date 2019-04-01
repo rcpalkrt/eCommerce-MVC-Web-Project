@@ -1,0 +1,54 @@
+﻿@using ElectronicECommerce.BOL.Entities
+@model IEnumerable<QuestionCategory>
+
+<section class="solid_banner_area">
+    <div class="container">
+        <div class="solid_banner_inner">
+            <h3>Sık Sorulan Sorular</h3>
+            <ul>
+                <li><a href="/">Anasayfa</a></li>
+                <li><a>S.S. Sorular</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<!-- Accordion -->
+<div class="container-fluid bg-gray" id="accordion-style-1">
+    <div class="container">
+        <section>
+            @foreach (QuestionCategory item in Model)
+            {
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="text-green mb-4 text-center">@item.Name</h1>
+                    </div>
+                    <div class="col-10 mx-auto">
+                        <div class="accordion" id="accordionExample">
+                            @foreach (QuestionAnswer HQA in item.QuestionsAnswers)
+                            {
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#@HQA.ID" aria-expanded="true" aria-controls="@HQA.ID">
+                                                <i class="fa fa-question-circle"></i><i class="fa fa-angle-double-right mr-3"></i>@HQA.Question
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="@HQA.ID" class="collapse show fade" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            @HQA.Answer
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+            }
+        </section>
+    </div>
+</div>
